@@ -1,0 +1,28 @@
+Query Optimization SS14 - Exercise 1 - 26/4 2014
+
+
+Description
+-----------------
+Exercise 1 lies in the examples folder as "Exercise1.1.cpp" for query 1
+and "Exercise1.2.cpp" for query 2. 
+
+
+Execution
+-----------------
+Construct program:
+	"make"
+
+Query 1: 
+	"./bin/ex1"
+	
+Query 2:
+	"./bin/ex2"
+	
+	
+Authors
+-----------------
+Alexandra Nordin
+Roc Reguant
+
+
+
