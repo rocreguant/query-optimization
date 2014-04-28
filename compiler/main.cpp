@@ -72,16 +72,28 @@ int main(){
 		if(aux == "select" or aux == "from") phase = aux;
 		else{
 			if(phase == "select"){ //might not have any argument ???????????
+				if(check[0] and aux == "select"){ //more than one select on the query
+					cout << "ERROR! You're using protected words, such as SELECT more than once!" << endl;
+					return -1;
+				}
 				cout << "select: " << aux << endl;
 				q.select.push_back(aux);
 				check[0] = true;
 			}
-			else if(phase == "from"){
+			else if(phase == "from" and check[0]){
+				if(check[1] and aux == "from"){ //more than one select on the query
+					cout << "ERROR! You're using protected words, such as FROM more than once!" << endl;
+					return -1;
+				}
 				cout << "from: " << aux << endl;
 				q.from.push_back(aux);
 				check[1] = true;
 			}
-			else if(phase == "where"){
+			else if(phase == "where" and check[1]){ //check[0] is not needed because otherwise we wouldn't go into the fist if
+				if(check[2] and aux == "where"){ //more than one select on the query
+					cout << "ERROR! You're using protected words, such as WHERE more than once!" << endl;
+					return -1;
+				}
 				q.where.push_back(process_where());
 				cout << "comparasion: " << q.where[0].first << " equals " << q.where[0].second << endl;
 				check[2] = true;
