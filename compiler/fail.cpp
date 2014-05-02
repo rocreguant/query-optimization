@@ -3,11 +3,11 @@
 
 using namespace std;
 
-class Fail
-{
-	double hours;
-	double total;
+class Fail{
 public:
 
-	error
+	Fail(string s){
+		cout << "ERROR!" << endl << s << endl;
+		exit(-1);
+	}
 };
