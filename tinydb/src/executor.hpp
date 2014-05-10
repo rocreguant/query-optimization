@@ -15,7 +15,7 @@ class Executor  {
 		private: 
 
 
-}
+}; 
 
 
 #endif
