@@ -5,6 +5,7 @@
 #include <sstream>
 #include <string>
 #include <boost/algorithm/string.hpp>
+#include "executor.hpp"
 //#include <algorithm>
 
 using namespace std;
@@ -120,11 +121,13 @@ int main(){
 	*/
 	Database db;
 	db.open("data/uni");
-	vector<Table&> vectorTable();
+	vector<Table&> vectorTable(q.from.size());
 	for(int i=0; i< q.from.size(); ++i){
-		vecorTable.push_back(db.getTable(q.from[i])); 
+		vecorTable[i]=db.getTable(q.from[i]); 
 		
 	}
+	
+	
 	
 	
 }
