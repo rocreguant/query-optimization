@@ -1,3 +1,0 @@
-select hello
-from tables
-where hello=aloha

@@ -1,0 +1,1 @@
+select id, name from person p, others o where p.Pid=o.Oid and a.lo=h.a
