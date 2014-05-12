@@ -28,8 +28,14 @@ class Phaser;
 		}
 		
 		pair<string, string> p;
-		p.first = elems[0];
-		p.second = elems[1];
+		if(elems.size() == 1){
+			p.first = "";
+			p.second = elems[0];
+		}
+		else{
+			p.first = elems[0];
+			p.second = elems[1];
+		}
 	
 		return p;
 	}
@@ -129,12 +135,13 @@ class Phaser;
 
 
 
-/*
+
     int main()
     {
     	query total;
+    	Pharser p;
     	try{
-			total = read();
+			total = p.read();
 	    }
 	    catch(char const* er) { std::cerr <<std::endl << "WARNING!! => " << er << std::endl << std::endl;}
 	    
@@ -149,4 +156,4 @@ class Phaser;
 	    for(int i=0; i<total.where.size(); ++i) cout << i << " - *" << total.where[i].l_attr.first << "+"<< total.where[i].l_attr.second << '$' << total.where[i].comparator << '$' <<  total.where[i].r_attr.first << "+"<< total.where[i].r_attr.second << endl;
 	    
     }
-*/
+

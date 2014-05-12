@@ -1,6 +1,31 @@
 all: main
 
-main: main.cpp
+main: main.o executor.o Pharser.o
+	g++ -main.o executor.o Pharser.o -o main
+	
+main.o:
+	g++ -c main.cpp
+
+executor.o:
+	g++ -c executor.cpp
+
+Pharser.o:
+	g++ -c Pharser.cpp
+
+clean:
+	rm -rf *o main
+	
+	
+	
+	all: main
+
+main: main.o
+	g++ main.o
+	
+fail.o: fail.cpp
+	g++ -c fail.cpp
+	
+main.o: main.cpp
 	g++ -c main.cpp
 
 clean:
