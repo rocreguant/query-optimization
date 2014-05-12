@@ -279,3 +279,16 @@ int Table::findAttribute(const string& name)
    return -1;
 }
 //---------------------------------------------------------------------------
+std::vector<std::string> Table::getAttributeNames()
+{
+	vector<std::string> names; 
+	for(int i = 0; i < attributes.size(); i++)
+	{
+		names.push_back(attributes[i].getName()); 
+	}
+	return names; 
+}
+
+
+
+
