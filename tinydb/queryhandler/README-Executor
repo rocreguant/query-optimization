@@ -1,0 +1,16 @@
+Executor
+---------------------
+Will execute queries parsed in the form of query-struct.h. 
+
+However it is not fully complete: 
+1. The executor will always select *. 
+2. When there is a comparison with a constant it can only be of type string. 
+
+It can however handle multiple conditions in a correct way. 
+
+There is an example query in the main function in executor.cpp. 
+
+#----------------------------------------------------------------------------------
+To execute it:
+*Run the Makefile in this folder
+*execute ./main

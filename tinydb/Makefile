@@ -13,10 +13,11 @@ CHECKDIR=@mkdir -p $(dir $@)
 EXEEXT:=
 endif
 
-all: bin/admin$(EXEEXT) examples_bin
+all: bin/admin$(EXEEXT) examples_bin queryhandler
 
 include src/LocalMakefile
 include examples/LocalMakefile
+include queryhandler/LocalMakefile
 
 -include bin/*.d bin/*/*.d
 
@@ -25,6 +26,10 @@ bin/%.o: src/%.cpp
 	/usr/bin/g++ -o$@ -c $(CXXFLAGS) $(DEPTRACKING) $<
 
 bin/examples/%.o: examples/%.cpp
+	$(CHECKDIR)
+	/usr/bin/g++ -o$@ -c $(CXXFLAGS) $(DEPTRACKING) $<
+	
+bin/queryhandler/%.o: queryhandler/%.cpp
 	$(CHECKDIR)
 	/usr/bin/g++ -o$@ -c $(CXXFLAGS) $(DEPTRACKING) $<
 
