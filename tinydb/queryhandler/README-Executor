@@ -3,14 +3,18 @@ Executor
 Will execute queries parsed in the form of query-struct.h. 
 
 However it is not fully complete: 
-1. The executor will always select *. 
-2. When there is a comparison with a constant it can only be of type string. 
-
-It can however handle multiple conditions in a correct way. 
-
-There is an example query in the main function in executor.cpp. 
+	The program can only select all.
 
 #----------------------------------------------------------------------------------
 To execute it:
-*Run the Makefile in this folder
-*execute ./main
+*Run the Makefile in tinyDB root. (a local makefile has been added for the project "queryhandler")
+
+*From tinyDB root execute the following examples: 
+
+----For the file queryhandler/query1.txt--------
+*execute cat queryhandler/query1.txt | ./bin/queryhandler/queryhandler 
+
+----For the file queryhandler/query2.txt--------
+*execute cat queryhandler/query2.txt | ./bin/queryhandler/queryhandler 
+
+Create query files if you want to try other queries. 

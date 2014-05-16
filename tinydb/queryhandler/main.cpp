@@ -11,7 +11,7 @@
 using namespace std;
 
 
-	/*int main(){
+	int main(){
 	
 		Pharser p;
 		query q;
@@ -23,10 +23,9 @@ using namespace std;
 	    Executor* executor = new Executor(); 
 	    executor->execute(q);
 	    
+/*
+		Parser result checker
 
-##
-##		Parser result checker
-##
 
 
 	    
@@ -38,6 +37,6 @@ using namespace std;
 	    
 	    cout << "query-where" << endl;
 	    for(int i=0; i<q.where.size(); ++i) cout << i << " - *" << q.where[i].l_attr.first << "+"<< q.where[i].l_attr.second << '$' << q.where[i].comparator << '$' <<  q.where[i].r_attr.first << "+"<< q.where[i].r_attr.second << endl;
-    
+    */
 		return 0;
-	}*/
+	}

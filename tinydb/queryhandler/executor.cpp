@@ -44,7 +44,8 @@ void Executor::execute(query q){
 	 
 	Database db; 
 	db.open("data/uni"); 
-	if(q.from.size() > 1){
+	
+	if(q.from.size() >= 1){
 		
 		unordered_map<string, unordered_map<string, const Register*>> registers; 
 		unique_ptr<Operator> crossproduct(nullptr); 
@@ -59,13 +60,42 @@ void Executor::execute(query q){
 			vector<string> names = db.getTable(it->first).getAttributeNames();
 			populateRegisterTable(&registers, *tablescan, &names, it->second); 		
 			unique_ptr<Operator> selection(move(tablescan)); 
-			for(auto it2 = q.where.begin(); it2 != q.where.end(); it2++){
+			for(auto it2 = q.where.begin(); it2 != q.where.end(); it2++){ 
+				
 				if((*it2).r_attr.first == "" && (*it2).l_attr.first == it->second){ //See if bindings are the same  
 					Register* registertmp = new Register(); //tmpp
 					
-					//Fix for loop here later for all different types
-					registertmp->setString((*it2).r_attr.second);
+					int attrIndex = db.getTable(it->first).findAttribute((*it2).l_attr.second);  
 					
+					if(attrIndex < 0){
+						throw "NO EXISTENT ATTRIBUTE";
+					}
+					const Attribute& attr = db.getTable(it->first).getAttribute(attrIndex); 
+					Attribute::Type attr_type = attr.getType(); 
+					string name = attr.getName(); 
+					
+					if(attr_type == Attribute::Type::Int)
+					{
+						int tmp; 
+						size_t end; 
+						tmp = stoi((*it2).r_attr.second, &end); 
+						registertmp->setInt(tmp);
+					}
+					else if(attr_type == Attribute::Type::Double)
+					{
+						int tmp; 
+						size_t end; 
+						tmp = stod((*it2).r_attr.second, &end); 
+						registertmp->setInt(tmp);
+					}
+					else if(attr_type == Attribute::Type::Bool)
+					{
+						//TODO
+					}
+					else
+					{
+						registertmp->setString((*it2).r_attr.second);
+					}
 					
 					unique_ptr<Operator> seltmp(new Selection(move(selection), registers[it->second][(*it2).l_attr.second] ,registertmp )); //tmp
 					selection.swap(seltmp); 
@@ -124,7 +154,7 @@ Executor::~Executor(){
  * AND s.name = Schopenhauer
  * AND v.titel = Grundzüge
  */
-int main(){
+/*int main(){
 	
 	Executor* executor = new Executor(); 
 	
@@ -164,4 +194,4 @@ int main(){
 	
 	
 	return 0; 
-}
+}*/

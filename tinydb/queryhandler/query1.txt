@@ -1,0 +1,1 @@
+SELECT * from studenten s, hoeren h where h.matrnr = s.matrnr and s.matrnr=27550

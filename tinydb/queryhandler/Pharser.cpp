@@ -53,6 +53,13 @@ class Phaser;
 		c.comparator = '=';
 		c.l_attr = process_pairs(p.first, '.');
 		c.r_attr = process_pairs(p.second, '.');
+
+		string constant; 
+		
+		if(c.r_attr.second[0] == '"' || c.r_attr.second[0] == '\''){
+			constant = c.r_attr.second.substr(1, c.r_attr.second.size() - 2); 
+			c.r_attr.second = constant; 
+		}
 		
 		return c;
 	
@@ -77,26 +84,28 @@ class Phaser;
 	***					(*correctly: no more and no les than 1 time each)
 	**/
 	query Pharser::read(){
+		
 		string word, total = "";
 		query vec;
 		vector<bool> check(3,false); //this is the vector where we check if we have select/from/where
 		int id =-1; //it says in which phase of the query are we
 		while(cin >> word){
-			std::transform(word.begin(), word.end(), word.begin(), ::tolower); //make the word lowercase
-			if(word == "select"){
+			string tmpword = word; 
+			std::transform(tmpword.begin(), tmpword.end(), tmpword.begin(), ::tolower); //make the word lowercase
+			if(tmpword == "select"){
 				if(check[0]) throw "You're using select more than once";
 				else check[0] = true;
 				id = 0;
 				vec.select = vector<string>(); 
 			}
-			else if(word == "from"){
+			else if(tmpword == "from"){
 				if(check[1]) throw "You're using from more than once";
 				else check[1] = true;
 				if(!check[0]) throw "You forgot to use the select";
 				id = 1;
 				vec.from = vector<pair<string, string> >();
 			}
-			else if(word == "where"){
+			else if(tmpword == "where"){
 				if(check[2]) throw "You're using where more than once";
 				else check[2] = true;
 				if(!check[0]) throw "You forgot to use the select";
@@ -109,6 +118,7 @@ class Phaser;
 				if(id == 0){
 					word = comma_removal(word);
 					vec.select.push_back(word);
+					
 				}
 				else if(id == 1){
 					pair<string, string> p;
@@ -118,7 +128,7 @@ class Phaser;
 					vec.from.push_back(p);
 				}
 				else if(id == 2){
-					if(word == "and"){ //this means that we've sucessfully read one condition
+					if(tmpword == "and"){ //this means that we've sucessfully read one condition
 					if(vec.where.size() < 0) throw "You should write a condition before using the 'AND' ";
 						vec.where.push_back(process_where(total));				
 						total = "";
@@ -130,8 +140,32 @@ class Phaser;
 		//if the last word is an AND error
 		if(word == "and") throw "The last condition can't be empty, otherwise remove the 'AND'";
 		else vec.where.push_back(process_where(total)); //here we should processate the last condition
+				
+		//FOR DEBUGGING		
+		/*cout << "SELECTS: " << endl; 
 		
+		for(int i = 0; i < vec.select.size(); i++) cout << vec.select[i] << endl; 
 		
+		cout << endl; 
+		
+		cout << "FROMS: " << endl; 
+		for(int i = 0; i < vec.from.size(); i++){ 
+			cout << vec.from[i].first << " " << vec.from[i].second << endl; 
+		}
+		
+		cout << endl; 
+		
+		cout << "WHERES: " << endl; 
+		for(auto it = vec.where.begin(); it != vec.where.end(); it++){ 
+			cout << "comparator: " << it->comparator << endl; 
+			
+			cout << "left first: " << it->l_attr.first << endl; 
+			cout << "left second: " << it->l_attr.second << endl; 
+			
+			cout << "right first: " << it->r_attr.first << endl; 
+			cout << "right second: " << it->r_attr.second << endl; 
+			
+		}*/
 		
 		return vec;
 	}
