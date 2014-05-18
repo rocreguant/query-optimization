@@ -1,0 +1,40 @@
+
+#----------------------------------------------------------------------
+QUERYGRAPH (Assignment 4, 19th May)
+-----------------------------------------------------------------------
+Files added: QueryGraph.h, QueryGraph.cpp
+
+To execute it: 
+
+* Run the makefile in tinyDB root
+
+*Execute the two examples as mentioned in the executor example below. 
+	Querygraphs will be created and their toString methods printed. 
+
+
+
+
+
+
+#----------------------------------------------------------------------
+EXECUTOR(Assignment 3, 12th May)
+#----------------------------------------------------------------------
+Will execute queries parsed in the form of query-struct.h. 
+
+However it is not fully complete: 
+	The program can only select all.
+
+
+To execute it:
+*Run the Makefile in tinyDB root. (a local makefile has been added for
+									the project "queryhandler")
+
+*From tinyDB root execute the following examples: 
+
+----For the file queryhandler/query1.txt--------
+*execute cat queryhandler/query1.txt | ./bin/queryhandler/queryhandler 
+
+----For the file queryhandler/query2.txt--------
+*execute cat queryhandler/query2.txt | ./bin/queryhandler/queryhandler 
+
+Create query files if you want to try other queries. 
