@@ -6,6 +6,7 @@
 #include <string>
 #include "executor.hpp"
 #include "Pharser.hpp"
+#include "QueryGraph.h"
 //#include <algorithm>
 
 using namespace std;
@@ -20,8 +21,12 @@ using namespace std;
 	    }
 	    catch(char const* er) { std::cerr <<std::endl << "WARNING!! => " << er << std::endl << std::endl;}
 	    
-	    Executor* executor = new Executor(); 
-	    executor->execute(q);
+	    
+	    QueryGraph* qg = new QueryGraph(q, "data/uni"); 
+	    qg->toString(); 
+	    
+	    //Executor* executor = new Executor(); 
+	    //executor->execute(q);
 	    
 /*
 		Parser result checker

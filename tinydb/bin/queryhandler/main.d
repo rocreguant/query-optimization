@@ -115,4 +115,16 @@ bin/queryhandler/main.o: queryhandler/main.cpp \
  /usr/include/c++/4.7/bits/stl_relops.h \
  /usr/include/c++/4.7/bits/hashtable.h \
  /usr/include/c++/4.7/bits/hashtable_policy.h \
- /usr/include/c++/4.7/bits/unordered_map.h queryhandler/Pharser.hpp
+ /usr/include/c++/4.7/bits/unordered_map.h queryhandler/Pharser.hpp \
+ queryhandler/QueryGraph.h /usr/include/c++/4.7/forward_list \
+ /usr/include/c++/4.7/bits/forward_list.h /usr/include/c++/4.7/memory \
+ /usr/include/c++/4.7/bits/stl_tempbuf.h \
+ /usr/include/c++/4.7/bits/stl_raw_storage_iter.h \
+ /usr/include/c++/4.7/typeinfo /usr/include/c++/4.7/ext/concurrence.h \
+ /usr/include/c++/4.7/bits/uses_allocator.h \
+ /usr/include/c++/4.7/functional /usr/include/c++/4.7/tuple \
+ /usr/include/c++/4.7/backward/auto_ptr.h \
+ /usr/include/c++/4.7/bits/unique_ptr.h \
+ /usr/include/c++/4.7/bits/shared_ptr.h \
+ /usr/include/c++/4.7/bits/shared_ptr_base.h \
+ /usr/include/c++/4.7/bits/forward_list.tcc

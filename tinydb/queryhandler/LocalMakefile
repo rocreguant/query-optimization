@@ -1,4 +1,4 @@
-bin/queryhandler/queryhandler$(EXEEXT): bin/queryhandler/executor.o bin/queryhandler/Pharser.o bin/queryhandler/main.o $(obj)
+bin/queryhandler/queryhandler$(EXEEXT): bin/queryhandler/executor.o bin/queryhandler/Pharser.o bin/queryhandler/main.o bin/queryhandler/QueryGraph.o $(obj)
 	$(BUILDEXE)
 
 queryhandler: bin/queryhandler/queryhandler$(EXEEXT)

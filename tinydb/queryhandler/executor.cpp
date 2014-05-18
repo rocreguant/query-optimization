@@ -8,6 +8,7 @@
 #include "operator/Printer.hpp"
 #include "operator/Chi.hpp"
 #include "operator/Operator.hpp"
+#include "QueryGraph.h"
 #include <iostream>
 #include <cstddef>
 #include <unordered_map>
