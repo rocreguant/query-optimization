@@ -24,6 +24,7 @@ using namespace std;
 	    
 	    QueryGraph* qg = new QueryGraph(q, "data/uni"); 
 	    qg->toString(); 
+	    delete qg;
 	    
 	    //Executor* executor = new Executor(); 
 	    //executor->execute(q);

@@ -40,7 +40,7 @@ void populateRegisterTable(std::unordered_map<std::string, std::unordered_map<st
    }
 }
 
-
+//executes query canonically 
 void Executor::execute(query q){
 	 
 	Database db; 
@@ -61,6 +61,8 @@ void Executor::execute(query q){
 			vector<string> names = db.getTable(it->first).getAttributeNames();
 			populateRegisterTable(&registers, *tablescan, &names, it->second); 		
 			unique_ptr<Operator> selection(move(tablescan)); 
+			
+			//Find pushdowns and execute them
 			for(auto it2 = q.where.begin(); it2 != q.where.end(); it2++){ 
 				
 				if((*it2).r_attr.first == "" && (*it2).l_attr.first == it->second){ //See if bindings are the same  
@@ -75,6 +77,7 @@ void Executor::execute(query q){
 					Attribute::Type attr_type = attr.getType(); 
 					string name = attr.getName(); 
 					
+					//Check type for attribute
 					if(attr_type == Attribute::Type::Int)
 					{
 						int tmp; 
@@ -100,7 +103,6 @@ void Executor::execute(query q){
 					
 					unique_ptr<Operator> seltmp(new Selection(move(selection), registers[it->second][(*it2).l_attr.second] ,registertmp )); //tmp
 					selection.swap(seltmp); 
-					
 				}
 			}
 			if(crossproduct == nullptr){ 
@@ -112,6 +114,7 @@ void Executor::execute(query q){
 			}
 		}
 	
+		//Find join conditions and execute them
 		for(auto it2 = q.where.begin(); it2 != q.where.end(); it2++){
 			if((*it2).r_attr.first != ""){ //See if bindings are the 
 				string rightTable; 
@@ -128,6 +131,7 @@ void Executor::execute(query q){
 				crossproduct.swap(seltmp); 
 			}	
 		}
+		
 		
 		//Print the names of the students
 		Printer out(move(crossproduct));
