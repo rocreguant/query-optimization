@@ -1,5 +1,2 @@
-The queries and their execution plans are in the file 
-"Queries_with_execution_plans.pdf".
- 
-The tinyDB implemention of the queries for exercise 1 are explained 
-in tinyDB/README.
+This is an unfinished project for TUM, done together with one classmate.
+It uses **C++**
